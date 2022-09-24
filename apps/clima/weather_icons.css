@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'weathericons';
+    src: url('../font/weathericons-regular-webfont.eot');
+    src: url('../font/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/weathericons-regular-webfont.woff2') format('woff2'), url('../font/weathericons-regular-webfont.woff') format('woff'), url('../font/weathericons-regular-webfont.ttf') format('truetype'), url('../font/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.icon-weather {
+    margin: 0;
+    padding:0;
+    height: 0;
+    display: inline-block;
+}
+
+.icon-weather::before,
+.icon-weather::after {
+        position: relative;
+        font-family: 'weathericons';
+        -webkit-text-fill-color: #F0F0F0;
+}
+
+/* Nubes altas */
+.icon-weather[data-icon="17"]:after {
+    content: "\f07d";
+}
+.icon-weather[data-icon="17n"]:after {
+    content: "\f080";
+}
+
+/* Nuboso */
+.icon-weather[data-icon*="16"]:after,
+.icon-weather[data-icon*="15"]:after,
+.icon-weather[data-icon*="14"]:after {
+    content: "\f013";
+}
+
+/* Poco nuboso */
+.icon-weather[data-icon="13"]:after,
+.icon-weather[data-icon="12"]:after {
+    content: "\f00c";
+}
+.icon-weather[data-icon="13n"]:after,
+.icon-weather[data-icon="12n"]:after {
+    content: "\f083";
+}
+
+/* Despejado */
+.icon-weather[data-icon="11"]:after {
+    content: "\f00d";
+}
+
+.icon-weather[data-icon="11n"]:after {
+    content: "\f02e";
+}
+/* Cubierto con tormenta */
+.icon-weather[data-icon*="64"]:after,
+.icon-weather[data-icon*="63"]:after,
+.icon-weather[data-icon*="62"]:after,
+.icon-weather[data-icon*="61"]:after,
+.icon-weather[data-icon*="54"]:after,
+.icon-weather[data-icon*="53"]:after,
+.icon-weather[data-icon*="52"]:after,
+.icon-weather[data-icon*="51"]:after {
+    content: "\f01e";
+}
+/** lluvia **/
+.icon-weather[data-icon*="46"]:after,
+.icon-weather[data-icon*="45"]:after,
+.icon-weather[data-icon*="44"]:after,
+.icon-weather[data-icon*="26"]:after,
+.icon-weather[data-icon*="25"]:after,
+.icon-weather[data-icon*="24"]:after,
+.icon-weather[data-icon*="23"]:after {
+    content: "\f008";
+}
+/* Intervalos nubosos con lluvia escasa */
+.icon-weather[data-icon="43"]:after {
+    content: "\f008";
+}
+.icon-weather[data-icon="43n"]:after {
+    content: "\f036";
+}
+
+/** nieve **/
+.icon-weather[data-icon*="74"]:after,
+.icon-weather[data-icon*="73"]:after,
+.icon-weather[data-icon*="72"]:after,
+.icon-weather[data-icon*="71"]:after,
+.icon-weather[data-icon*="36"]:after,
+.icon-weather[data-icon*="35"]:after,
+.icon-weather[data-icon*="34"]:after,
+.icon-weather[data-icon*="33"]:after {
+    content: "\f01b";
+}
+
+/* niebla */
+.icon-weather[data-icon="81"]:after,
+.icon-weather[data-icon="82"]:after{
+    content: "\f003";
+}
+.icon-weather[data-icon="81n"]:after,
+.icon-weather[data-icon="82n"]:after{
+    content: "\f04a";
+}
+
+/** viento **/
+.icon-weather[data-icon="wind"]:after{
+    content: "\f050";
+}
+
+/** rain **/
+.icon-weather[data-icon="rain"]:after{
+    content: "\f084";
+}
+
+/** humidity **/
+.icon-weather[data-icon="humidity"]:after{
+    content: "\f07a"
+}
+
+/** raindrop **/
+.icon-weather[data-icon="raindrops"]:after{
+    content: "\f04e";
+}

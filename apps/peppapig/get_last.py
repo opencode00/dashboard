@@ -28,7 +28,7 @@ def last(game_id, num_cmb_ant = 1):
 def euro_last(regs):
     data = []
     for item in regs:
-        print(common.euro_process(item))
+        # print(common.euro_process(item))
         data.append(common.euro_process(item))
 
     return data
@@ -36,7 +36,7 @@ def euro_last(regs):
 def primi_last(regs):
     data = []
     for item in regs:
-        print(common.primi_process(item))
+        # print(common.primi_process(item))
         data.append(common.primi_process(item))
 
     return data
@@ -44,7 +44,7 @@ def primi_last(regs):
 def bono_last(regs):
     data = []
     for item in regs:
-        print(common.bono_process(item))
+        # print(common.bono_process(item))
         data.append(common.bono_process(item))
 
     return data

@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from apps.peppapig import common, get_last
+from apps.trulenque import trulenque
 
 app = Flask(__name__)
 
@@ -7,7 +8,7 @@ app = Flask(__name__)
 def index():
     pepa = get_last.euro_last(get_last.last('EMIL'))
     print(pepa[0])
-    return render_template("index.html", euro  = str(pepa[0]))
+    return render_template("index.html", euro  = str(pepa[0]), eventos = trulenque.laagenda())
 
 @app.get('/test')
 def test():

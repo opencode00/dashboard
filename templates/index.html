@@ -64,6 +64,7 @@
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
               </li>
+              <li><span>&#xF0B7;</span></li>
               <li class="separator d-lg-none"></li>
             </ul>
           </div>
@@ -74,6 +75,8 @@
           <div class="modal-content">
             <div class="modal-header">
                 prueba dkfjlksdjflkajsdlkfjsadkl
+                <i>&#xf00d;</i>
+                
             </div>
           </div>
         </div>
@@ -97,10 +100,26 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                titulo tarjeta
+                Euro
               </div>
               <div class="card-body">
-                contenido de la pagina
+                texto
+              </div>
+            </div>
+          </div>
+          <!--/row1-->
+          <!--row1-->
+          <div class="col-sm-4">
+            <div class="card ">
+              <div class="card-header">
+                Trulenque
+              </div>
+              <div class="card-body">
+                {% for ev in eventos %}
+                  <ul>
+                    <li>{{ev | safe}}</li>
+                  </ul>  
+                {% endfor %}
               </div>
             </div>
           </div>
