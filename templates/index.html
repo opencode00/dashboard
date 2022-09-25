@@ -95,7 +95,7 @@
                   <thead>
                     <tr align="center">
                       <th width="15%">Fecha</th>
-                      <th width="25%">Max - Min</th>
+                      <th width="22%">Max - Min</th>
                       <th>Viento (km/h)</th>
                       <th>% Lluvia</th>
                       <th>$ Lluvia</th>
@@ -130,7 +130,7 @@
                   <thead>
                     <tr align="center">
                       <th width="15%">Fecha</th>
-                      <th width="25%">Max - Min</th>
+                      <th width="22%">Max - Min</th>
                       <th>Viento (km/h)</th>
                       <th>% Lluvia</th>
                       <th>$ Lluvia</th>
@@ -158,14 +158,10 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Trulenque
+                Bolsa
               </div>
               <div class="card-body">
-                {% for ev in eventos %}
-                  <ul>
-                    <li>{{ev | safe}}</li>
-                  </ul>  
-                {% endfor %}
+
               </div>
             </div>
           </div>
@@ -176,7 +172,7 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Yelmo
+                Peliculas Populares
               </div>
               <div class="card-body">
                 contenido de la pagina
@@ -188,10 +184,32 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Que ver TMDB
+                Series Populares
               </div>
               <div class="card-body">
-                contenido de la pagina
+                <table>
+                  {% for s in series %}
+                    <tr style="border-bottom: 1px solid;">
+                      {{s | safe}}
+                    </tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--/row2-->
+          <!--row2-->
+          <div class="col-sm-4">
+            <div class="card ">
+              <div class="card-header">
+                Trulenque
+              </div>
+              <div class="card-body">
+                {% for ev in eventos %}
+                  <ul>
+                    <li>{{ev | safe}}</li>
+                  </ul>  
+                {% endfor %}
               </div>
             </div>
           </div>

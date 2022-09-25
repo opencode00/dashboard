@@ -1,11 +1,12 @@
 from flask import Flask, render_template
 from apps import apps
+from apps import tmdb
 
 app = Flask(__name__)
 
 @app.get('/')
 def index():
-    return render_template("index.html", sc = apps.eltiempo('sc'), ll= apps.eltiempo('ll'), eventos = apps.laagenda())
+    return render_template("index.html", sc = apps.eltiempo('sc'), ll= apps.eltiempo('ll'), eventos = apps.laagenda(), series = tmdb.populars('series_p', 'tv'))
 
 @app.get('/test')
 def test():

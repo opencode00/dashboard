@@ -1,10 +1,8 @@
 import requests as rq
 import pprint
 
-headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
-    'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
-    'Accept':'text/html,application/xhtml+xml,application/xml;'
-    'q=0.9,image/webp,*/*;q=0.8'}
+headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)''AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
+           'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
 
 def req(type):
     api_key = '118d0e0aadde8ef816e4f0e8f19fc468'
@@ -13,13 +11,19 @@ def req(type):
     # print(f'https://api.themoviedb.org/3/{cmds[type]}?api_key={api_key}&{opts}')
     return f'https://api.themoviedb.org/3/{cmds[type]}?api_key={api_key}&{opts}'
 
-def populars():
-    series = rq.get(req('series_p'), headers=headers).json()
-    # pelis = s.get(req('pelis_p'), headers=headers) .jsso
-    # pprint.pprint(series['results'][0]['name'])
-    print(len(series['results']) )
-    #https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
-    #id, name, original_name, overview (), vote_average, https://image.tmdb.org/t/p/w500+poster_path, enlace: https://www.themoviedb.org/tv/id-original-name?language=es
+def formatData(data, type='tv'):
+    return f"<td width=25%><a href=\"https://www.themoviedb.org/{type}/{data['id']}-{data['original_name'].replace(' ','-')}?language=es\" target=_blank><img src='https://image.tmdb.org/t/p/w200{data['poster_path']}'></a></td><td><ul><li>{data['name']}</li><li>{data['vote_average']}</li><li>{data['overview']}</li></ul></td>"
 
-populars()
+
+def populars(type, subtype):
+    items = []
+    r = rq.get(req(type), headers=headers).json()
+
+    for i in r['results']:
+        items.append(formatData(i,subtype))
+
+    return items
+
+
+# populars('pelis_p' , 'movies')
     
