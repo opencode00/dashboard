@@ -6,7 +6,12 @@ app = Flask(__name__)
 
 @app.get('/')
 def index():
-    return render_template("index.html", sc = apps.eltiempo('sc'), ll= apps.eltiempo('ll'), eventos = apps.laagenda(), series = tmdb.populars('series_p', 'tv'))
+    return render_template("index.html", 
+        sc = apps.eltiempo('sc'), 
+        ll= apps.eltiempo('ll'), 
+        eventos = apps.laagenda(), 
+        series = tmdb.populars('series_p', 'tv'), 
+        pelis = tmdb.populars('pelis_p', 'movies'))
 
 @app.get('/test')
 def test():

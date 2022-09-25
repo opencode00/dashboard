@@ -175,7 +175,13 @@
                 Peliculas Populares
               </div>
               <div class="card-body">
-                contenido de la pagina
+                <table>
+                  {% for p in pelis %}
+                    <tr style="border-bottom: 1px solid;">
+                      {{p | safe}}
+                    </tr>
+                  {% endfor %}
+                </table>
               </div>
             </div>
           </div>
