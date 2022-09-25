@@ -88,10 +88,33 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Euro
+                Santa Cruz
               </div>
               <div class="card-body">
-                {{euro}}
+                <table>
+                  <thead>
+                    <tr align="center">
+                      <th width="15%">Fecha</th>
+                      <th width="25%">Max - Min</th>
+                      <th>Viento (km/h)</th>
+                      <th>% Lluvia</th>
+                      <th>$ Lluvia</th>
+                      <th>% Nubes</th>
+                      <th>% Luna </th>
+                    </tr>
+                  </thead>
+                {%for item in sc %}
+                  <tr align="center" style="border-bottom: 1px solid;">
+                    <td><h6>{{item[0] | safe}}</h6></td>
+                    <td>{{item[1] | safe}}</td>
+                    <td>{{item[2] | safe}}</td>
+                    <td>{{item[3] | safe}}</td>
+                    <td>{{item[4] | safe}}</td>
+                    <td>{{item[5] | safe}}</td>
+                    <td>{{item[6] | safe}}</td>
+                  </tr>
+                {%endfor%}
+                </table>
               </div>
             </div>
           </div>
@@ -100,10 +123,33 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Euro
+                La Laguna
               </div>
               <div class="card-body">
-                texto
+                <table>
+                  <thead>
+                    <tr align="center">
+                      <th width="15%">Fecha</th>
+                      <th width="25%">Max - Min</th>
+                      <th>Viento (km/h)</th>
+                      <th>% Lluvia</th>
+                      <th>$ Lluvia</th>
+                      <th>% Nubes</th>
+                      <th>% Luna </th>
+                    </tr>
+                  </thead>
+                {%for item in ll %}
+                  <tr align="center" style="border-bottom: 1px solid;">
+                    <td><h6>{{item[0] | safe}}</h6></td>
+                    <td>{{item[1] | safe}}</td>
+                    <td>{{item[2] | safe}}</td>
+                    <td>{{item[3] | safe}}</td>
+                    <td>{{item[4] | safe}}</td>
+                    <td>{{item[5] | safe}}</td>
+                    <td>{{item[6] | safe}}</td>
+                  </tr>
+                {%endfor%}
+                </table>
               </div>
             </div>
           </div>
@@ -130,7 +176,7 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                titulo tarjeta
+                Yelmo
               </div>
               <div class="card-body">
                 contenido de la pagina
@@ -142,7 +188,7 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                titulo tarjeta
+                Que ver TMDB
               </div>
               <div class="card-body">
                 contenido de la pagina
