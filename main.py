@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-from apps import apps
+from apps import trulenque
+from apps import clima
 from apps import tmdb
 
 app = Flask(__name__)
@@ -7,9 +8,9 @@ app = Flask(__name__)
 @app.get('/')
 def index():
     return render_template("index.html", 
-        sc = apps.eltiempo('sc'), 
-        ll= apps.eltiempo('ll'), 
-        eventos = apps.laagenda(), 
+        sc = clima.eltiempo('sc'), 
+        ll= clima.eltiempo('ll'), 
+        eventos = trulenque.laagenda(), 
         series = tmdb.populars('series_p', 'tv'), 
         pelis = tmdb.populars('pelis_p', 'movies'))
 
