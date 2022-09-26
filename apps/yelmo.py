@@ -1,16 +1,18 @@
-from requests_html import HTMLSession
+from playwright.sync_api import sync_playwright
 
-s = HTMLSession(verify=False)
-url = 'https://yelmocines.es/now-playing.aspx/GetNowPlaying'
+def main():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.goto('https://yelmocines.es/cartelera/santa-cruz-tenerife')
+        page.wait_for_timeout(5000)
 
-headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
-    'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
-    'Accept':'text/html,application/xhtml+xml,application/xml;'
-    'q=0.9,image/webp,*/*;q=0.8'}
+        # titles = page.query_selector_all('header > h3 > a')
+        titles = page.query_selector_all('article > figure > a ')       
+        for title in titles:
+            # print(title.evaluate("item => item.innerText"))
+            print(title.evaluate("item => item.innerHTML"))
+            print(title.evaluate("item => item.href"))
 
-def yelmo():
-    content = s.post(url,{'cityKey': 'santa-cruz-tenerife'})
-    print (content.text)
-
-yelmo()
-
+if __name__ == '__main__':
+    main()

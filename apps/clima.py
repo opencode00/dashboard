@@ -10,10 +10,6 @@ headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'q=0.9,image/webp,*/*;q=0.8'}
 
 
-def el_tiempo():
-    # temp = content.html.find('span.weather-today-now-current-temperature').text
-    pass
-
 def eltiempo(mun):
     req = ''
     if mun == 'sc':
