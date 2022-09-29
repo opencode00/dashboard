@@ -140,10 +140,15 @@
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-header">
-                Bolsa
+                Los 40
               </div>
               <div class="card-body">
+                <ul>
+                  {% for p in ppales %}
+                    <li>{{p | safe}}</li>
 
+                  {% endfor %}
+                </ul>
               </div>
             </div>
           </div>

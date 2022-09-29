@@ -1,7 +1,6 @@
 from requests_html import HTMLSession
-import pprint
+from datetime import datetime
 
-url = 'https://lagenda.org/programacion/planfinde'
 s = HTMLSession(verify=False)
 headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
@@ -9,6 +8,7 @@ headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'q=0.9,image/webp,*/*;q=0.8'}
 
 def laagenda():
+    url = 'https://lagenda.org/programacion/planfinde'
     titulos = []
     lugares = []
     data = []
@@ -40,3 +40,38 @@ def laagenda():
         
     # pprint.pprint(fdata)
     return fdata
+
+def cabtfe(url):
+    content = s.get(url, headers=headers)
+    titulos = content.html.find('h2 > a')
+    data = []
+    for i in titulos:
+        data.append(f'<a href="httsp://www.tenerife.es{i.attrs["href"]}" target=_blank>{i.text}</a>')
+    return data
+
+def musica():
+    h = datetime.now()
+    url = 'https://www.tenerife.es/portalcabtfe/es/agenda?searchphrase=any&areas[]=flexicontent&filter_13[]=80&filter_245[]=2&filter_245[1]='+h.strftime('%Y-%m-%d')
+    return cabtfe(url)
+
+def expos():
+    h = datetime.now()
+    url = 'https://www.tenerife.es/portalcabtfe/es/agenda?searchphrase=any&areas[]=flexicontent&filter_13[]=78&filter_245[]=2&filter_245[1]='+h.strftime('%Y-%m-%d')
+    return cabtfe(url)
+
+def guimera():
+    h = datetime.now()
+    content = s.request('GET', f'https://teatroguimera.es/programacion-{h.strftime("%Y")}/', headers=headers, cookies={'uncode_privacy[consent_types]':'%5B%5D'})
+    titulos = content.html.find('h3 > a')
+    data = []
+    for i in titulos:
+        data.append(f'<a href="{i.attrs["href"]}" target=_blank>{i.text}</a>')
+    return data   
+
+def santiago_martin():
+    content = s.get('https://pabellonsantiagomartin.net/eventos', headers=headers)
+    titulos = content.html.find('h2 > a')
+    data = []
+    for i in titulos:
+        data.append(f'<a href="https://pabellonsantiagomartin.net{i.attrs["href"]}" target=_blank>{i.text}</a>')
+    return data

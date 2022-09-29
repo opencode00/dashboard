@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from apps import trulenque
 from apps import clima
 from apps import tmdb
+from apps import los40
 
 app = Flask(__name__)
 
@@ -12,7 +13,9 @@ def index():
         ll= clima.eltiempo('ll'), 
         eventos = trulenque.laagenda(), 
         series = tmdb.populars('series_p', 'tv'), 
-        pelis = tmdb.populars('pelis_p', 'movies'))
+        pelis = tmdb.populars('pelis_p', 'movies'),
+        ppales = los40.los40()
+    )
 
 @app.get('/test')
 def test():
