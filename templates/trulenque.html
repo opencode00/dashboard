@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block title%} Trulenque {% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                La Agenda Weekend
+            </div>
+            <div class="card-body">
+                {% for ev in eventos %}
+                    <ul>
+                        <li>{{ev | safe}}</li>
+                    </ul>  
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
+

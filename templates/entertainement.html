@@ -1,0 +1,85 @@
+{% extends "index.html" %}
+
+{% block title%}Clima{% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                Los 40
+            </div>
+            <div class="card-body">
+                <ul>
+                {% for p in ppales %}
+                <li>{{p | safe}}</li>
+
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                Yelmo Cines Meridiano
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for peli in meridiano %}
+                    <li>{{peli | safe}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                Yelmo Cines Orotava
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for peli in orotava %}
+                    <li>{{peli | safe}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Peliculas Populares
+            </div>
+            <div class="card-body">
+                <table>
+                    {% for p in pelis %}
+                    <tr style="border-bottom: 1px solid;">
+                        {{p | safe}}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Series Populares
+            </div>
+            <div class="card-body">
+                <table>
+                    {% for s in series %}
+                    <tr style="border-bottom: 1px solid;">
+                        {{s | safe}}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

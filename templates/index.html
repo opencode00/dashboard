@@ -7,17 +7,36 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../static/img/favicon.png">
   <title>
-    OpenCode Dashboard
+    OpenCode - {%block title%}Dashboard{%endblock%}
   </title>
-  <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link href="static/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,200" />
+  <link href="../static/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <style>
+    .text2middle{
+      vertical-align: middle;
+    }
 
+  </style>
 </head>
 
 <body class="">
   <div class="wrapper">
+    <div class="sidebar" data="magenta">
+      <div class="sidebar-wrapper" >
+        <div class="logo">
+          <a target=_blank href="./">
+              <span style="font-size:45px" class="material-symbols-rounded text2middle">home</span>
+              <span class="d-lg-none d-md-block">Inicio</span>
+          </a>
+        </div>
+        <ul class="nav">
+          {%for item in menu%}
+          {{ item | safe}}
+          {%endfor %}
+        </ul>
+      </div>
+    </div>
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
@@ -30,7 +49,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:void(0)">OpenCode</a>
+            <a class="navbar-brand" href="javascript:void(0)">Titulo Pagina</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -39,179 +58,19 @@
           </button>
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-              <li><i class="fa fa-music"></i></li>
-              <li><a target=_blank href="http://opencode.port0.org/files"><span class="material-symbols-outlined">folder_open</span></li></a>
-              <li><a target=_blank href="http://opencode.port0.org/music"><span class="material-symbols-outlined">music_note</span></li></a>
-              <li><a target=_blank href="http://dox.port0.org/"><span class="material-symbols-outlined">terminal</span></li></a>
-              <li>
-                <button class="btn btn-link" id="config-button" data-toggle="modal" data-target="#configModal">
-                  <i class="fa fa-cog fa-2x"> </i>
-                </button>
-              </li>
+              {%for item in bTopbar%}
+                {{ item | safe}}
+              {%endfor %}
             </ul>
           </div>
         </div>
       </nav>
-      <div class="modal modal-search fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-                prueba dkfjlksdjflkajsdlkfjsadkl
-                <i>&#xf00d;</i>
-                
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- End Navbar -->
-      <div class="content" style="padding: 78px 30px 30px 30px;">
-        <div class="row">
-          <!--row1-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                Santa Cruz
-              </div>
-              <div class="card-body">
-                <table>
-                  <thead>
-                    <tr align="center">
-                      <th width="15%">Fecha</th>
-                      <th width="22%">Max - Min</th>
-                      <th>Viento (km/h)</th>
-                      <th>% Lluvia</th>
-                      <th>$ Lluvia</th>
-                      <th>% Nubes</th>
-                      <th>% Luna </th>
-                    </tr>
-                  </thead>
-                {%for item in sc %}
-                  <tr align="center" style="border-bottom: 1px solid;">
-                    <td><h6>{{item[0] | safe}}</h6></td>
-                    <td>{{item[1] | safe}}</td>
-                    <td>{{item[2] | safe}}</td>
-                    <td>{{item[3] | safe}}</td>
-                    <td>{{item[4] | safe}}</td>
-                    <td>{{item[5] | safe}}</td>
-                    <td>{{item[6] | safe}}</td>
-                  </tr>
-                {%endfor%}
-                </table>
-              </div>
-            </div>
-          </div>
-          <!--/row1-->
-          <!--row1-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                La Laguna
-              </div>
-              <div class="card-body">
-                <table>
-                  <thead>
-                    <tr align="center">
-                      <th width="15%">Fecha</th>
-                      <th width="22%">Max - Min</th>
-                      <th>Viento (km/h)</th>
-                      <th>% Lluvia</th>
-                      <th>$ Lluvia</th>
-                      <th>% Nubes</th>
-                      <th>% Luna </th>
-                    </tr>
-                  </thead>
-                {%for item in ll %}
-                  <tr align="center" style="border-bottom: 1px solid;">
-                    <td><h6>{{item[0] | safe}}</h6></td>
-                    <td>{{item[1] | safe}}</td>
-                    <td>{{item[2] | safe}}</td>
-                    <td>{{item[3] | safe}}</td>
-                    <td>{{item[4] | safe}}</td>
-                    <td>{{item[5] | safe}}</td>
-                    <td>{{item[6] | safe}}</td>
-                  </tr>
-                {%endfor%}
-                </table>
-              </div>
-            </div>
-          </div>
-          <!--/row1-->
-          <!--row1-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                Los 40
-              </div>
-              <div class="card-body">
-                <ul>
-                  {% for p in ppales %}
-                    <li>{{p | safe}}</li>
-
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!--/row1-->
-        </div>
-        <div class="row">
-          <!--row2-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                Peliculas Populares
-              </div>
-              <div class="card-body">
-                <table>
-                  {% for p in pelis %}
-                    <tr style="border-bottom: 1px solid;">
-                      {{p | safe}}
-                    </tr>
-                  {% endfor %}
-                </table>
-              </div>
-            </div>
-          </div>
-          <!--/row2-->
-          <!--row2-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                Series Populares
-              </div>
-              <div class="card-body">
-                <table>
-                  {% for s in series %}
-                    <tr style="border-bottom: 1px solid;">
-                      {{s | safe}}
-                    </tr>
-                  {% endfor %}
-                </table>
-              </div>
-            </div>
-          </div>
-          <!--/row2-->
-          <!--row2-->
-          <div class="col-sm-4">
-            <div class="card ">
-              <div class="card-header">
-                Trulenque
-              </div>
-              <div class="card-body">
-                {% for ev in eventos %}
-                  <ul>
-                    <li>{{ev | safe}}</li>
-                  </ul>  
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-          <!--/row2-->
-        </div>
+      <div class="content">
+          {%block content%} {%endblock%}
       </div>
       <footer class="footer">
-        <div class="container-fluid">
-        </div>
+        
       </footer>
     </div>
   </div>
@@ -221,11 +80,11 @@
   <script src="../static/js/core/bootstrap.min.js"></script>
   <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Chart JS -->
-  <script src="../static/js/plugins/chartjs.min.js"></script>
+  <!-- <script src="../static/js/plugins/chartjs.min.js"></script> -->
   <!--  Notifications Plugin    -->
-  <script src="../static/js/plugins/bootstrap-notify.js"></script>
+  <!-- <script src="../static/js/plugins/bootstrap-notify.js"></script> -->
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../static/js/black-dashboard.min.js?v=1.0.0"></script>
+  <script src="../static/js/black-dashboard.js?v=1.0.0"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -242,98 +101,6 @@
         window_width = $(window).width();
 
         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-        $('.fixed-plugin a').click(function(event) {
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
-
-        $('.fixed-plugin .background-color span').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data', new_color);
-          }
-
-          if ($main_panel.length != 0) {
-            $main_panel.attr('data', new_color);
-          }
-
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data', new_color);
-          }
-        });
-
-        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
-
-          if (sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            sidebar_mini_active = false;
-            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-          } else {
-            $('body').addClass('sidebar-mini');
-            sidebar_mini_active = true;
-            blackDashboard.showSidebarMessage('Sidebar mini activated...');
-          }
-
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
-
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-        });
-
-        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
-
-          if (white_color == true) {
-
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').removeClass('white-content');
-            }, 900);
-            white_color = false;
-          } else {
-
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').addClass('white-content');
-            }, 900);
-
-            white_color = true;
-          }
-
-
-        });
-
-        $('.light-badge').click(function() {
-          $('body').addClass('white-content');
-        });
-
-        $('.dark-badge').click(function() {
-          $('body').removeClass('white-content');
-        });
       });
     });
   </script>
