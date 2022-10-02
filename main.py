@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from apps import menu, topbar
+import menu, topbar
 from apps import trulenque, clima, tmdb, los40, yelmo
 
 app = Flask(__name__)
@@ -35,11 +35,18 @@ def media():
     return render_template("entertainement.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        series = tmdb.populars('series_p', 'tv'), 
-        pelis = tmdb.populars('pelis_p', 'movies'),
         ppales = los40.los40(),
         meridiano = yelmo.cines('meridiano'),
         orotava = yelmo.cines('orotava'),
+    )
+
+@app.get('/quever')
+def quever():
+    return render_template("quever.html", 
+        bTopbar = topbar.topbar(),
+        menu = menu.build_menu(request.path),
+        series = tmdb.populars('series_p', 'tv'), 
+        pelis = tmdb.populars('pelis_p', 'movies'),
     )
 
 # @app.get('/cursos')

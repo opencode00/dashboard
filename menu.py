@@ -3,6 +3,7 @@ menu = [
     {'title':'Trulenque','url':'./trulenque', 'icon':'celebration'},
     {'title':'Cine y Música','url':'./media', 'icon':'play_circle'},
     {'title':'Cupones','url':'./cupones', 'icon':'savings'},
+    {'title':'Que ver','url':'./quever', 'icon':'movie'},
     {'title':'Cursos','url':'./cursos', 'icon':'draw'},
 ]
 

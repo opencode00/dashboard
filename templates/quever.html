@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block title%}Que ver{% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Peliculas Populares
+            </div>
+            <div class="card-body">
+                <table>
+                    {% for p in pelis %}
+                    <tr style="border-bottom: 1px solid;">
+                        {{p | safe}}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Series Populares
+            </div>
+            <div class="card-body">
+                <table>
+                    {% for s in series %}
+                    <tr style="border-bottom: 1px solid;">
+                        {{s | safe}}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
