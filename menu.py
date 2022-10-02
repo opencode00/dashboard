@@ -2,8 +2,8 @@ menu = [
     {'title':'Clima','url':'./clima', 'icon':'weather_snowy'},
     {'title':'Trulenque','url':'./trulenque', 'icon':'celebration'},
     {'title':'Cine y Música','url':'./media', 'icon':'play_circle'},
-    {'title':'Cupones','url':'./cupones', 'icon':'savings'},
     {'title':'Que ver','url':'./quever', 'icon':'movie'},
+    {'title':'Cupones','url':'./cupones', 'icon':'savings'},
     {'title':'Cursos','url':'./cursos', 'icon':'draw'},
 ]
 
