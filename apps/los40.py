@@ -1,6 +1,19 @@
 from requests_html import HTMLSession
 import pprint as p
+#https://myradioonline.es/los40-classic/listas
+#https://myradioonline.es/kiss-fm/listas
+    #div.plist-item (enlace youtube)
+    #div.plist-item span[itemprop] (artista - cancion)
 
+#Ha sonado ('div.ha-sonado div.data div.titulo|artista')
+# https://play.los40.com/emisora/los40_classic/
+# https://play.los40.com/
+# https://play.los40.com/emisora/los40_catalunya/
+
+#https://www.hitfm.es/hit-30/
+    # titulo:  h2.entry-title
+    # artista: h3
+    #enlce: div.youtube img 
 
 s = HTMLSession(verify=False)
 headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'

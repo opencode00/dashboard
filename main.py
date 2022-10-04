@@ -14,12 +14,10 @@ def index():
 @app.get('/clima')
 def tiempo():
     return render_template("clima.html", 
-        widgetsc = clima.widgets('sc'),
-        widgetll = clima.widgets('ll'),
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        sc = clima.eltiempo('sc'), 
-        ll= clima.eltiempo('ll'), 
+        sc = clima.tiempo('sc'), 
+        ll= clima.tiempo('ll'), 
     )
 
 @app.get('/trulenque')
@@ -30,14 +28,23 @@ def fogalera():
         eventos = trulenque.laagenda(), 
     )
 
-@app.get('/media')
-def media():
-    return render_template("entertainement.html", 
+@app.get('/listen')
+def listen():
+    return render_template("music.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
         ppales = los40.los40(),
-        meridiano = yelmo.cines('meridiano'),
-        orotava = yelmo.cines('orotava'),
+
+    )
+
+@app.get('/cine')
+def cine():
+    pass
+    return render_template("cine.html", 
+        bTopbar = topbar.topbar(),
+        menu = menu.build_menu(request.path),
+        # meridiano = yelmo.cines('meridiano'),
+        # orotava = yelmo.cines('orotava'),
     )
 
 @app.get('/quever')
@@ -49,14 +56,21 @@ def quever():
         pelis = tmdb.populars('pelis_p', 'movies'),
     )
 
-# @app.get('/cursos')
-# def cursos():
-#     return render_template("index.html", 
-#         bTopbar = topbar.topbar(),
-#         menu = menu.build_menu(request.path),
-#         sc = clima.eltiempo('sc'), 
-#         ll= clima.eltiempo('ll'), 
-#     )
+@app.get('/cupones')
+def cupones():
+    pass
+    return render_template("index.html", 
+        bTopbar = topbar.topbar(),
+        menu = menu.build_menu(request.path),
+    )
+
+@app.get('/cursos')
+def cursos():
+    pass
+    return render_template("index.html", 
+        bTopbar = topbar.topbar(),
+        menu = menu.build_menu(request.path),
+    )
 
 
 if __name__ == "__main__":

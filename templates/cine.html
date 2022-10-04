@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block title%}Clima{% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Yelmo Cines Meridiano
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for peli in meridiano %}
+                    <li>{{peli | safe}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Yelmo Cines Orotava
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for peli in orotava %}
+                    <li>{{peli | safe}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

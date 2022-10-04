@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 
 {% block title%}Clima{% endblock%}
+{%block css%}'<link href="../static/css/weather-icons.min.css?v=1.0.0" rel="stylesheet"/><link href="../static/css/el-tiempo-icons.css?v=1.0.0" rel="stylesheet"/>'{% endblock%} 
 
 {% block content%}
 <div class="row">
@@ -10,7 +11,22 @@
                 Santa Cruz
             </div>
             <div class="card-body">
-                {{ widgetsc | safe}}
+                <table>
+                    <tr>
+                        <td width="20%">
+                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span>
+                            {{sc[0].desc }}
+                        </td>
+                        <td>
+                            <div style="padding-left: 2em;">
+                                Humedad: {{sc[0].humedad }} <br>
+                                Prob lluvia: {{sc[0].plluvia }}<br>
+                                Cantidad lluvia: {{sc[0].cant_lluvia }}<br>
+                                Sensación Termica: {{sc[0].sens_termica }}<br>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
          </div>
     </div>     
@@ -20,7 +36,22 @@
                 La Laguna 
             </div>
             <div class="card-body">
-                {{ widgetll | safe}}
+                <table>
+                    <tr>
+                        <td width="20%">
+                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span>
+                            {{ll[0].desc }}
+                        </td>
+                        <td>
+                            <div style="padding-left: 2em;">
+                                Humedad: {{ll[0].humedad }} <br>
+                                Prob lluvia: {{ll[0].plluvia }}<br>
+                                Cantidad lluvia: {{ll[0].cant_lluvia }}<br>
+                                Sensación Termica: {{ll[0].sens_termica }}<br>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>    
@@ -33,34 +64,25 @@
         </div>
         <div class="card-body">
             <table>
-            <thead>
-                <tr align="center">
-                    <th width="15%">Fecha</th>
-                    <th width="22%">Max - Min</th>
-                    <th>Viento (km/h)</th>
-                    <th>% Lluvia</th>
-                    <th>$ Lluvia</th>
-                    <th>% Nubes</th>
-                    <th>% Luna </th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr align="center">
+                        <th width="15%">Fecha</th>
+                        <th width="22%">Max-Min</th>
+                        <th width="15%">Viento</th>
+                        <th width="15%">% Lluvia</th>
+                        <!-- <th>% Nubes</th>
+                        <th>% Luna </th> -->
+                    </tr>
+                </thead>
             {%for item in sc %}
-            <tr align="center" style="border-bottom: 1px solid;">
-                <td><h6>{{item[0] | safe}}</h6></td>
-                <td>{{item[1] | safe}}</td>
-                <td>{{item[2] | safe}}</td>
-                <td>{{item[3] | safe}}</td>
-                <td>{{item[4] | safe}}</td>
-                <td>{{item[5] | safe}}</td>
-                <td>{{item[6] | safe}}</td>
-            </tr>
+                <tr align="center" style="border-bottom: 1px solid;">
+                    <td>{{item.fecha}} </td>
+                    <td>{{item.sens_termica}}</td>
+                    <td>{{item.viento}}</td>
+                    <td>{{item.plluvia}}</td>
+                </tr>
             {%endfor%}
-            <tr>
-                <td colspan="7">
-                    Informe detallado
-                </td>
-            </tr>
-            </table>
+            </table>   
         </div>
     </div>
     </div>
@@ -73,29 +95,25 @@
         </div>
         <div class="card-body">
             <table>
-            <thead>
-                <tr align="center">
-                <th width="15%">Fecha</th>
-                <th width="22%">Max - Min</th>
-                <th>Viento (km/h)</th>
-                <th>% Lluvia</th>
-                <th>$ Lluvia</th>
-                <th>% Nubes</th>
-                <th>% Luna </th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr align="center">
+                        <th width="15%">Fecha</th>
+                        <th width="22%">Max-Min</th>
+                        <th width="15%">Viento</th>
+                        <th width="15%">% Lluvia</th>
+                        <!-- <th>% Nubes</th>
+                        <th>% Luna </th> -->
+                    </tr>
+                </thead>
             {%for item in ll %}
-            <tr align="center" style="border-bottom: 1px solid;">
-                <td><h6>{{item[0] | safe}}</h6></td>
-                <td>{{item[1] | safe}}</td>
-                <td>{{item[2] | safe}}</td>
-                <td>{{item[3] | safe}}</td>
-                <td>{{item[4] | safe}}</td>
-                <td>{{item[5] | safe}}</td>
-                <td>{{item[6] | safe}}</td>
-            </tr>
+                <tr align="center" style="border-bottom: 1px solid;">
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.sens_termica}}</td>
+                    <td>{{item.viento}}</td>
+                    <td>{{item.plluvia}}</td>
+                </tr>
             {%endfor%}
-            </table>
+            </table>   
         </div>
         </div>
     </div>
