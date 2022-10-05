@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import menu, topbar
-from apps import trulenque, clima, tmdb, los40, yelmo
+from apps import music, trulenque, clima, tmdb, yelmo
 
 app = Flask(__name__)
 
@@ -33,7 +33,8 @@ def listen():
     return render_template("music.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        ppales = los40.los40(),
+        ppales = music.los40(),
+        hitfm = music.hitfm(),
 
     )
 

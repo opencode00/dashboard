@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 
-{% block title%}Clima{% endblock%}
+{% block title%}Music Lists{% endblock%}
 
 {% block content%}
 <div class="row">
@@ -12,6 +12,21 @@
             <div class="card-body">
                 <ul>
                 {% for p in ppales %}
+                <li>{{p | safe}}</li>
+
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                HitFM
+            </div>
+            <div class="card-body">
+                <ul>
+                {% for p in hitfm %}
                 <li>{{p | safe}}</li>
 
                 {% endfor %}
