@@ -7,15 +7,71 @@
     <div class="col-sm-4">
         <div class="card ">
             <div class="card-header">
-                La Agenda Weekend
+                Cabildo TFE
             </div>
             <div class="card-body">
-                {% for ev in eventos %}
+                Ferias                   
+                <ul>
+                {% for ev in expos %}
+                    <li>{{ev | safe}}</li>
+                {% endfor %}
+                </ul>
+                Música
+                <ul>
+                {% for ev in musica %}
+                    <li>{{ev | safe}}</li>
+                {% endfor %}
+                </ul>  
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                Eventos de pago
+            </div>
+            <div class="card-body">
+                Teatro Guimera
+                <ul>
+                {% for ev in guimera %}
+                    <li>{{ev | safe}}</li>
+                {% endfor %}
+                </ul> 
+                Santiago Martin
+                <ul>
+                {% for ev in smartin %}
+                    <li>{{ev | safe}}</li>
+                {% endfor %}
+                </ul>  
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-header">
+                RCNT
+            </div>
+            <div class="card-body">
+                {% for ev in rcnt %}
                     <ul>
                         <li>{{ev | safe}}</li>
                     </ul>  
                 {% endfor %}
             </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4">
+    <div class="card ">
+        <div class="card-header">
+            La Agenda Weekend
+        </div>
+        <div class="card-body">
+            {% for ev in laagenda %}
+                <ul>
+                    <li>{{ev | safe}}</li>
+                </ul>  
+            {% endfor %}
         </div>
     </div>
 </div>

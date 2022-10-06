@@ -17,7 +17,9 @@ def acs():
     lista = []
     for i in range(len(items)-1, 0, -1):
         if (i > 2) and ('Tenerife' in str(items[i])):
-            cursos = str(items[i-2].get_text()) + "\n"
-            cursos += "http://www.gobiernodecanarias.org/academia/scripts/" + str(items[i-2].a['href']) + "\n\n"
-            lista.append(cursos)
+            lista.append(f'<a href="http://www.gobiernodecanarias.org/academia/scripts/{str(items[i-2].a["href"])}" target=_blank><b>{str(items[i-2].get_text())}</b></a>')
+            # cursos = str(items[i-2].get_text()) + "\n"
+            # cursos += "http://www.gobiernodecanarias.org/academia/scripts/" + str(items[i-2].a['href']) + "\n\n"
+            # lista.append(cursos)
+    
     return lista

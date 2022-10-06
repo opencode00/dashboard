@@ -1,3 +1,4 @@
+from audioop import reverse
 from requests_html import HTMLSession
 from datetime import datetime
 
@@ -74,4 +75,20 @@ def santiago_martin():
     data = []
     for i in titulos:
         data.append(f'<a href="https://pabellonsantiagomartin.net{i.attrs["href"]}" target=_blank>{i.text}</a>')
+    return data
+
+def rcnt():
+    h = datetime.now()
+    content = s.get('https://www.rcnt.es', headers=headers)
+    fecha = content.html.find('div.ei-event')
+    titulo = content.html.find('div.ei-name')
+    desc = content.html.find('div.ei-description')
+    image = content.html.find('div.ei-img')
+    data = []
+    for i in range(len(fecha)):
+        f = datetime.strptime(fecha[i].attrs["data-start"], "%Y-%m-%d")
+        if (h.month == f.month and h.year == f.year):
+            # print(f'<a href="https://www.rcnt.es/{image[i].text}"><b>{fecha[i].attrs["data-start"]} - {titulo[i].text}</b></a>')
+            data.append(f'<a href="https://www.rcnt.es/{image[i].text}" target=_blank><b>{f.day}/{f.month} - {titulo[i].text}</b></a>')
+
     return data

@@ -13,7 +13,7 @@ def close_sessions():
 def get_bonosvip_empresa(item):
     return str(item.select_one('span.empresa').get_text()) + ' - ' + str(item.select_one('span.municipio').get_text())
 
-def bonosvip(url):
+def bonosvip(url = 'http://www.bonosvip.com'):
     close_sessions()
     bvurl = 'http://www.bonosvip.com'
     
@@ -32,7 +32,7 @@ def bonosvip(url):
 
     bonosvip = []
     for i in range(0,len(empresas)): 
-        bonosvip.append(empresas[i] + '\n' + descripcion[i] + ' por ' + precios[i] + '\n ' + enlaces[i] + '\n\n')
+        bonosvip.append(f'<a href="{enlaces[i]}" target=_blank><b>{empresas[i]}</b></a> <br> {precios[i]} <br> {descripcion[i]}')
 
     return bonosvip
 

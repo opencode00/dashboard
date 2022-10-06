@@ -26,6 +26,12 @@ headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'Accept':'text/html,application/xhtml+xml,application/xml;'
     'q=0.9,image/webp,*/*;q=0.8'}
 
+def item(titulo, artista, enlaceyt, enlace=None):
+    if enlace is not None:
+        return f'<b>{titulo}</b> <br> {artista} <br> <a href="{enlaceyt}" target=_blank> YT </a> <a href="{enlace}" target=_blank> Muestra </a>'
+    
+    return f'<b>{titulo}</b> <br> {artista} <br> <a href="{enlaceyt}" target=_blank> YT </a>'
+
 def los40():
     url = 'https://los40.com/lista40/'
     lista = []
@@ -33,15 +39,15 @@ def los40():
     lista40 = content.html.find('div[data-url_youtube]')
     
     for i in lista40:
-        item = f'{i.attrs["data-titulo_cancion"]} <br> {i.attrs["data-nombre_artista"]} <br> <a href="{i.attrs["data-url_media"]}">Oir</a> <a href="{i.attrs["data-url_youtube"]}">YT</a>'
-        lista.append(item)
+        lista.append(item(i.attrs["data-titulo_cancion"], i.attrs["data-nombre_artista"], i.attrs["data-url_youtube"], i.attrs["data-url_media"]))
+    
     return lista
 
 def hitfm():
     url = 'https://www.hitfm.es/hit-30/'
     opts = Options()
     opts.add_argument('--headless')
-    driver = Chrome(executable_path='d:\\work\\dashboard\\chromedriver.exe', options=opts)
+    driver = Chrome(options=opts)
     driver.get(url)
     titulos = driver.find_elements(By.CSS_SELECTOR, 'h2.entry-title')
     artistas = driver.find_elements(By.CSS_SELECTOR, 'h3')
@@ -53,9 +59,25 @@ def hitfm():
         img = enlaces[i].get_attribute('src')
         img = img.replace('https://img.youtube.com/vi/','')
         # print(img[:-6])
-        data.append(f'{titulos[i].text} <br> {artistas[i].text} <br> <a href="https://www.youtube.com/watch?v={img[:-6]}" target=_blank> YT </a> <a href="{muestra[i].get_attribute("src")}" target=_blank> Muestra </a>')
+        data.append(item(titulos[i].text, artistas[i].text, 'https://www.youtube.com/watch?v='+img[:-6], muestra[i].get_attribute("src")))
 
     return data
 
+def myradioonline(emisora):
+    url = 'https://myradioonline.es/los40-classic/listas'
+    if emisora == 'kiss':
+        url = 'https://myradioonline.es/kiss-fm/listas'
+    
+    opts = Options()
+    opts.add_argument('--headless')
+    driver = Chrome(options=opts)
+    driver.get(url)
+    titulos = driver.find_elements(By.CSS_SELECTOR, 'span[itemprop=name]')[4:]
+    artista = driver.find_elements(By.CSS_SELECTOR, 'span[itemprop=byArtist]')[1:]
+    enlace = driver.find_elements(By.CSS_SELECTOR, 'div.plist-item')[1:]
+    data = []
+    for i in range(len(titulos)):
+        # print(titulos[i].get_attribute('innerHTML'), artista[i].get_attribute('innerHTML'), enlace[i].get_attribute('data-youtube'))
+        data.append(item(titulos[i].get_attribute('innerHTML'), artista[i].get_attribute('innerHTML'), 'https://www.youtube.com/watch?v='+enlace[i].get_attribute('data-youtube')))
 
-# p.pprint(hitfm())
+    return data

@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block title%} Cursos {% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+               Academia Canaria de Seguridad
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for p in cursos %}
+                        <li>{{p | safe}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

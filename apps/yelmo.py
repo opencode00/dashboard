@@ -1,33 +1,22 @@
-# from playwright.sync_api import sync_playwright
-# import pprint
+from selenium.webdriver  import Chrome
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
-# def cines(lugar):
-#     with sync_playwright() as p:
-#         url = 'https://yelmocines.es/cartelera/santa-cruz-tenerife'
-#         browser = p.chromium.launch(headless=True)
-#         page = browser.new_page()
-#         page.goto(url)
-#         page.wait_for_timeout(4000)
-#         meridiano = []    
-#         orotava = []
-#         # titles = page.query_selector_all('header > h3 > a')
-#         titles = page.query_selector_all('article > figure > a ')
-#         cines = page.query_selector_all('span#detail-movie')
-#         for i in range(len(titles)-1):
-#             # print(title.evaluate("item => item.innerText"))
-#             img = titles[i].evaluate("item => item.innerHTML")
-#             link = titles[i].evaluate("item => item.href")
-#             cine = cines[i].evaluate("item => item.dataset.list")
-#             if cine == 'Cartelera-la-villa-de-orotava':
-#                 orotava.append(f"<a href={link}>{img} ({cine})</a>")
-#             else:
-#                 meridiano.append(f"<a href={link}>{img} ({cine})</a>")
+def cines(lugar=None):
+    url = 'https://yelmocines.es/cartelera/santa-cruz-tenerife'
+    opts = Options()
+    opts.add_argument('--headless')
+    driver = Chrome(options=opts)
+    driver.get(url)
+    driver.implicitly_wait(4)
+    if (lugar == 'meridiano'):
+        titles = driver.find_elements(By.CSS_SELECTOR,'div[data-cinema=meridiano] h3 > a ')
+    else:
+        titles = driver.find_elements(By.CSS_SELECTOR,'div[data-cinema=la-villa-de-orotava] h3 > a ')
     
-#     if lugar == 'meridiano':
-#         return meridiano
-    
-#     return orotava
+    data = []
+    for i in titles:
+        # print(f'<href="{i.get_attribute("href")}" target=_blank>{i.get_attribute("innerHTML")}</a>')
+        data.append(f'<a href="{i.get_attribute("href")}" target=_blank>{i.get_attribute("innerHTML")}</a>')
 
-
-# if __name__ == '__main__':
-#    pprint.pprint(cines('meridiano'))
+    return data

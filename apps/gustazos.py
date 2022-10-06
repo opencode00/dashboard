@@ -27,7 +27,7 @@ def gustazos():
     descripcion = [item.select_one('span.tooltop').get_text() for item in rawItems]
 
     gustazos = []
-    for i in range(0,len(empresas)): 
-        gustazos.append(empresas[i] + '\n' + descripcion[i] + '\n ' + 'http://www.gustazos.com/' + enlaces[i] + '\n\n')
+    for i in range(len(empresas)): 
+        gustazos.append(f'<a href="http://www.gustazos.com/{enlaces[i]}" target=_blank><b>{empresas[i]}</b></a><br>{descripcion[i]}')
 
     return gustazos

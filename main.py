@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import menu, topbar
-from apps import music, trulenque, clima, tmdb, yelmo
+from apps import music, trulenque, clima, tmdb, yelmo, gustazos, bonosvip, cursos
 
 app = Flask(__name__)
 
@@ -25,7 +25,13 @@ def fogalera():
     return render_template("trulenque.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        eventos = trulenque.laagenda(), 
+        laagenda = trulenque.laagenda(), 
+        musica = trulenque.musica(), 
+        expos = trulenque.expos(), 
+        guimera = trulenque.guimera(), 
+        smartin = trulenque.santiago_martin(), 
+        rcnt = trulenque.rcnt(), 
+
     )
 
 @app.get('/listen')
@@ -35,6 +41,8 @@ def listen():
         menu = menu.build_menu(request.path),
         ppales = music.los40(),
         hitfm = music.hitfm(),
+        kiss = music.myradioonline('kiss'),
+        classics = music.myradioonline('classics'),
 
     )
 
@@ -44,8 +52,8 @@ def cine():
     return render_template("cine.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        # meridiano = yelmo.cines('meridiano'),
-        # orotava = yelmo.cines('orotava'),
+        meridiano = yelmo.cines('meridiano'),
+        orotava = yelmo.cines('orotava'),
     )
 
 @app.get('/quever')
@@ -60,17 +68,23 @@ def quever():
 @app.get('/cupones')
 def cupones():
     pass
-    return render_template("index.html", 
+    return render_template("cupones.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
+        gustazos = gustazos.gustazos(),
+        bonosRest =  bonosvip.bonosvip_restaurantes(),
+        bonosOcio =  bonosvip.bonosvip_ocio(),
+        bonosHotel =  bonosvip.bonosvip_hoteles(),
+        # bonoBien =  bonosvip.bonosvip_bienestar(),
     )
 
 @app.get('/cursos')
-def cursos():
+def learn():
     pass
-    return render_template("index.html", 
+    return render_template("cursos.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
+        cursos = cursos.acs(),
     )
 
 

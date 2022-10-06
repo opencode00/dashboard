@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+
+{% block title%} Cupones {% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Gustazos
+            </div>
+            <div class="card-body">
+                {% for cupon in gustazos %}
+                <div class="card-body">
+                    {{cupon | safe}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Bonos VIP OCIO
+            </div>
+            <div class="card-body">
+                {% for cupon in bonosOcio %}
+                <div class="card-body">
+                    {{cupon | safe}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Bonos VIP Restaurantes
+            </div>
+            <div class="card-body">
+                {% for cupon in bonosRest %}
+                <div class="card-body">
+                    {{cupon | safe}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card ">
+            <div class="card-header">
+                Bonos VIP Hoteles
+            </div>
+            <div class="card-body">
+                {% for cupon in bonosHotel %}
+                <div class="card-body">
+                    {{cupon | safe}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
