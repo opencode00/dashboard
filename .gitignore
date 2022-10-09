@@ -1,4 +1,9 @@
-__pycache__
-apps\__pycache__
-*.cpython-310.pyc
 *.pyc
+
+./__pychache__/*.cpython-310.pyc
+./apps/__pycache__/*.cpython-310.pyc
+
+__pycache__/main.cpython-310.pyc
+apps/__pycache__/clima.cpython-310.pyc
+apps/__pycache__/tmdb.cpython-310.pyc
+apps/__pycache__/trulenque.cpython-310.pyc

@@ -19,6 +19,7 @@ def tiempo():
         menu = menu.build_menu(request.path),
         sc = clima.tiempo('sc'), 
         ll= clima.tiempo('ll'), 
+        moon = clima.getTodayMoon(), 
     )
 
 @app.get('/trulenque')

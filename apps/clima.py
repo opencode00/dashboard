@@ -1,11 +1,12 @@
-# from requests_html import HTMLSession
 import requests
+from datetime import datetime
+import time
+import urllib.parse as parse
 import pprint
 
 # url = 'https://www.el-tiempo.net/provincias/38/municipios/38038'
 # https://www.el-tiempo.net/api/json/v2/provincias/38/municipios/38038
 # https://www.el-tiempo.net/api/json/v2/provincias/38/municipios/38023
-# 0:= 0-24 ; 1: 0-12 ; 2: 12-24 ; 3: 0-6 ; 4: 6-12 ; 5: 12-18; 6: 18-24
 
 # http://www.wdisseny.com/lluna/?lang=es
 # https://tidesandcurrents.noaa.gov/astronomical.html
@@ -56,7 +57,42 @@ def tiempo(mun = 'sc'):
 
     return proximos
 
+def getMoonPhases(size = 150):
+    now = datetime.now()
+    configMoon = {
+        'lang'  	:'es', 
+        'month' 	:now.month,
+        'year'  	:now.year,
+        'size'		:size, 
+        'lightColor':"rgb(255,255,210)", 
+        'shadeColor':"black", 
+        'texturize'	: "true", 
+        'LDZ': time.time()
+    }
+    url = "https://www.icalendar37.net/lunar/api/?" + parse.urlencode(configMoon)
+    s = requests.get(url, headers=headers)
+    return s.json()
+
+def getTodayMoon(d = None):
+    if d is None:
+        d = datetime.now()
+    moon = getMoonPhases(75)
+    print(d)
+    pprint.pprint(moon)
+    html = ''
+    weekday= d.weekday()
+    day = d.day
+    # return moon["phase"][str(d.day)]["svg"]
+    html = f'<b>{moon["nameDay"][weekday]}, {day} de {moon["monthName"]}</b>'
+    html += f'<div shadow>{moon["phase"][str(day)]["svg"]}</div>'
+    html += f'<div>{moon["phase"][str(day)]["phaseName"]}' 
+    if moon['phase'][str(day)]['isPhaseLimit']:
+        html+=''
+    else:
+        html+= str(round(moon['phase'][str(day)]['lighting'])) + "%"
+    html += "</div>"
+    return html
 
 if __name__ == '__main__':
-    pprint.pprint(sc())
+    pprint.pprint(getMoonPhases())
     # sc()

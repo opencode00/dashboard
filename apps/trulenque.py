@@ -1,4 +1,3 @@
-from audioop import reverse
 from requests_html import HTMLSession
 from datetime import datetime
 
