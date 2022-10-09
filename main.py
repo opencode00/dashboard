@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from doctest import REPORTING_FLAGS
+from flask import Flask, render_template, request, make_response
 import menu, topbar
 from apps import music, trulenque, clima, tmdb, yelmo, gustazos, bonosvip, cursos
 
@@ -36,15 +37,16 @@ def fogalera():
 
 @app.get('/listen')
 def listen():
-    return render_template("music.html", 
+    response = make_response(render_template("music.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
         ppales = music.los40(),
         hitfm = music.hitfm(),
-        kiss = music.myradioonline('kiss'),
-        classics = music.myradioonline('classics'),
-
-    )
+        # kiss = music.myradioonline('kiss'),
+        # classics = music.myradioonline('classics'),
+    ))
+    response.headers["Cache-Control"] = "public Max-age=86400" 
+    return response
 
 @app.get('/cine')
 def cine():

@@ -63,7 +63,7 @@ def hitfm():
 
     return data
 
-def myradioonline(emisora):
+def myradioonline(emisora=None):
     url = 'https://myradioonline.es/los40-classic/listas'
     if emisora == 'kiss':
         url = 'https://myradioonline.es/kiss-fm/listas'
