@@ -60,8 +60,8 @@ def cine():
     return render_template("cine.html", 
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
-        meridiano = yelmo.cines('meridiano'),
-        orotava = yelmo.cines('orotava'),
+        meridiano = yelmo.cines()[0],
+        orotava = yelmo.cines()[1],
     )
 
 @app.get('/quever')
