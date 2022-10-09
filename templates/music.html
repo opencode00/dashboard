@@ -4,6 +4,20 @@
 
 {% block content%}
 <div class="row">
+    <div class="col-sm-12">
+        <div class="card ">
+            <div class="card-header">
+                Radios Online
+            </div>
+            <div class="card-body">
+                <ul>
+                <li>{{radiosonline |safe}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-sm-3">
         <div class="card ">
             <div class="card-header">
@@ -27,9 +41,22 @@
             <div class="card-body">
                 <ul>
                 {% for p in hitfm %}
-                <li>{{p | safe}}</li>
-
+                    <li>{{p | safe}}</li>
                 {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card ">
+            <div class="card-header">
+                Los 40 Classics
+            </div>
+            <div class="card-body">
+                <ul>
+                    {% for p in classics %}
+                        <li>{{p | safe}}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -41,25 +68,9 @@
             </div>
             <div class="card-body">
                 <ul>
-                {% for p in kiss %}
-                <li>{{p | safe}}</li>
-
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card ">
-            <div class="card-header">
-                Los40 Classics
-            </div>
-            <div class="card-body">
-                <ul>
-                {% for p in classics %}
-                <li>{{p | safe}}</li>
-
-                {% endfor %}
+                    {% for p in kiss %}
+                        <li>{{p | safe}}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

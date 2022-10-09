@@ -20,6 +20,8 @@ def tiempo():
         sc = clima.tiempo('sc'), 
         ll= clima.tiempo('ll'), 
         moon = clima.getTodayMoon(), 
+        moons = clima.getMonthMoons(),
+        calmoon = clima.getCalendarMoons()
     )
 
 @app.get('/trulenque')
@@ -42,9 +44,12 @@ def listen():
         bTopbar = topbar.topbar(),
         menu = menu.build_menu(request.path),
         ppales = music.los40(),
-        hitfm = music.hitfm(),
-        # kiss = music.myradioonline('kiss'),
-        # classics = music.myradioonline('classics'),
+        hitfm = music.hitfm2(),
+        radiosonline = '<a href="https://myradioonline.es/" target=_blank> Radios online </a>',
+        # kiss = '<a href="https://myradioonline.es/kiss-fm/listas" target=_blank> Kiss FM </a>',
+        # classics = '<a href="https://myradioonline.es/los40-classic/listas" target=_blank> Los 40 Classic </a>',
+        kiss = music.myradioonline('kiss'),
+        classics = music.myradioonline('classics'),
     ))
     response.headers["Cache-Control"] = "public Max-age=86400" 
     return response

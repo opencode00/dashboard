@@ -1,7 +1,19 @@
 {% extends "index.html" %}
 
 {% block title%}Clima{% endblock%}
-{%block css%}'<link href="../static/css/weather-icons.min.css?v=1.0.0" rel="stylesheet"/><link href="../static/css/el-tiempo-icons.css?v=1.0.0" rel="stylesheet"/>'{% endblock%} 
+{%block css%}
+    <link href="../static/css/weather-icons.min.css?v=1.0.0" rel="stylesheet"/><link href="../static/css/el-tiempo-icons.css?v=1.0.0" rel="stylesheet"/>
+    <style>
+        .cal{
+            display: flex; 
+            flex-direction: row; 
+            margin-left:10px; 
+            margin-bottom:50px;
+            width: 90px; 
+            text-align: center; 
+        }
+    </style>
+{%endblock%} 
 
 {% block content%}
 <div class="row">
@@ -13,16 +25,17 @@
             <div class="card-body">
                 <table>
                     <tr>
-                        <td width="20%">
-                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span>
-                            {{sc[0].desc }}
+                        <td width="30%" align="center">
+                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span><br>
+   
                         </td>
                         <td>
                             <div style="padding-left: 2em;">
-                                Humedad: {{sc[0].humedad }} <br>
-                                Prob lluvia: {{sc[0].plluvia }}<br>
-                                Cantidad lluvia: {{sc[0].cant_lluvia }}<br>
-                                Sensación Termica: {{sc[0].sens_termica }}<br>
+                                <b><span style="font-size:1.8em"></span>{{sc[0].desc }}</span></b><br>
+                                <b><span style="font-size:1.8em"> {{sc[0].sens_termica }} º</span></b><br>
+                                <b><span class="icon-weather" data-icon="humidity"></span>: </b><span style="font-size:1.2em"> {{sc[0].humedad}} %</span> <br>
+                                <b><span class="icon-weather" data-icon="rain"></span>:</b><span style="font-size:1.2em"> {{sc[0].plluvia}} %</span><br>
+                                <b><span class="icon-weather" data-icon="raindrops" style="font-size: 1.8em"></b><span style="font-size:1.2em"> {{sc[0].cant_lluvia }} ml</span><br>
                             </div>
                         </td>
                     </tr>
@@ -48,16 +61,17 @@
             <div class="card-body">
                 <table>
                     <tr>
-                        <td width="20%">
-                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span>
-                            {{ll[0].desc }}
+                        <td width="30%" align="center">
+                            <span style="font-size: 4em; display: inline" class= "icon-weather text2middle" data-icon="{{sc[0].cielo }}"></span><br>
                         </td>
                         <td>
                             <div style="padding-left: 2em;">
-                                Humedad: {{ll[0].humedad }} <br>
-                                Prob lluvia: {{ll[0].plluvia }}<br>
-                                Cantidad lluvia: {{ll[0].cant_lluvia }}<br>
-                                Sensación Termica: {{ll[0].sens_termica }}<br>
+                                <b><span style="font-size:1.8em"></span>{{ll[0].desc }}</span></b><br>
+                                <b><span style="font-size:1.8em"> {{ll[0].sens_termica }} º</span></b><br>
+                                <b><span class="icon-weather" data-icon="humidity"></span>: </b><span style="font-size:1.2em"> {{ll[0].humedad}} %</span> <br>
+                                <b><span class="icon-weather" data-icon="rain"></span>:</b><span style="font-size:1.2em"> {{ll[0].plluvia}} %</span><br>
+                                <b><span class="icon-weather" data-icon="raindrops" style="font-size: 1.8em"></b><span style="font-size:1.2em"> {{ll[0].cant_lluvia }} ml</span><br>
+                                
                             </div>
                         </td>
                     </tr>
@@ -65,6 +79,18 @@
             </div>
         </div>
     </div>    
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                Lunas del mes 
+            </div>
+            <div class="card-body">
+                {{moons | safe}}    
+            </div>
+         </div>
+    </div>     
 </div>
 <div class="row">
     <div class="col-sm-6">
@@ -127,6 +153,18 @@
         </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                Calendario lunar 
+            </div>
+            <div class="card-body">
+                {{calmoon | safe}}    
+            </div>
+         </div>
+    </div>     
 </div>
 {% endblock%}
 

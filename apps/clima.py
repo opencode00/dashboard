@@ -1,6 +1,5 @@
 import requests
 from datetime import datetime
-import time
 import urllib.parse as parse
 import pprint
 
@@ -60,39 +59,70 @@ def tiempo(mun = 'sc'):
 def getMoonPhases(size = 150):
     now = datetime.now()
     configMoon = {
+        'LDZ': datetime(now.year, now.month, 1).timestamp(),
         'lang'  	:'es', 
-        'month' 	:now.month,
-        'year'  	:now.year,
-        'size'		:size, 
-        'lightColor':"rgb(255,255,210)", 
-        'shadeColor':"black", 
-        'texturize'	: "true", 
-        'LDZ': time.time()
-    }
+        'month' 	: now.month,
+        'year'  	: now.year,
+        'size'		: size, 
+        'lightColor': 'rgb(255,255,210)', 
+        'shadeColor': 'black', 
+        'texturize'	: 'true', 
+    }          
     url = "https://www.icalendar37.net/lunar/api/?" + parse.urlencode(configMoon)
     s = requests.get(url, headers=headers)
     return s.json()
 
-def getTodayMoon(d = None):
-    if d is None:
-        d = datetime.now()
+# # POr alguna razon el índice del día lo trae desordenado....
+# def calculateIndex(d):
+#     ti = d+22
+#     if (ti>31):
+#         ti = ti-31
+#     return ti
+
+def getTodayMoon():
+    d = datetime.now()
     moon = getMoonPhases(75)
-    print(d)
-    pprint.pprint(moon)
     html = ''
     weekday= d.weekday()
     day = d.day
-    # return moon["phase"][str(d.day)]["svg"]
-    html = f'<b>{moon["nameDay"][weekday]}, {day} de {moon["monthName"]}</b>'
-    html += f'<div shadow>{moon["phase"][str(day)]["svg"]}</div>'
+    html = f'<b>{moon["nameDay"][weekday]}, {day} de {moon["monthName"]}</b><br/>'
+    html += f'<div style="margin-top: 1em">{moon["phase"][str(day)]["svg"]}</div><br>'
     html += f'<div>{moon["phase"][str(day)]["phaseName"]}' 
-    if moon['phase'][str(day)]['isPhaseLimit']:
+    if moon['phase'][str(day)]['isPhaseLimit'] is not False:
         html+=''
     else:
-        html+= str(round(moon['phase'][str(day)]['lighting'])) + "%"
+        html+= "(" + str(round(moon['phase'][str(day)]['lighting'])) + ")%"
     html += "</div>"
     return html
 
+def getMonthMoons():
+    moons = getMoonPhases(75)
+    html = ''
+    for index, moon in moons['phase'].items():
+        if(moon['isPhaseLimit'] is not False):
+            html += '<div style="float:left; margin-left:10px; width: 90px; text-align: center ">'
+            html += f'<div>{index}</div>' 
+            html += f'<div>{moon["svg"]}</div>' 
+            html += f'<div>{moon["phaseName"]}</div>' 
+            html += '</div>'    
+        
+    return html
+
+def getCalendarMoons():
+    moons = getMoonPhases(75)
+    html = ''
+    for index, moon in moons['phase'].items():
+        if ((int(index)-1)%7 == 0):
+            html+='<br>'
+        html += '<div style="display: inline-block; width: 90px; margin: 10px 10px;; vertical-align: middle">'
+        html += f'<div>{index}</div>' 
+        html += f'<div>{moon["svg"]}</div>' 
+        html += f'<div>{moon["phaseName"]}</div>' 
+        html += '</div>'    
+    
+    return html
+
+
 if __name__ == '__main__':
-    pprint.pprint(getMoonPhases())
-    # sc()
+    pprint.pprint(getCalendarMoons())
+    # print(getMonthMoons())

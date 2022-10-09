@@ -14,7 +14,9 @@
 # https://play.los40.com/emisora/los40_catalunya/
 
 from requests_html import HTMLSession
-import re
+from selenium.webdriver  import Chrome
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 import pprint as p
 
@@ -41,36 +43,46 @@ def los40():
     
     return lista
 
-def hitfm2():
+def hitfm():
     url = 'https://www.hitfm.es/hit-30/'
-    content = s.get(url, headers=headers)
+    opts = Options()
+    opts.add_argument('--headless')
+    driver = Chrome(options=opts)
+    driver.get(url)
+    titulos = driver.find_elements(By.CSS_SELECTOR, 'h2.entry-title')
+    artistas = driver.find_elements(By.CSS_SELECTOR, 'h3')
+    enlaces = driver.find_elements(By.CSS_SELECTOR, '.youtube img')
+    muestra = driver.find_elements(By.CSS_SELECTOR, 'source')
     data = []
-    muestras = re.findall('<source src=\"(.+.mp3)', content.text)
-    enlaces = re.findall('\[meta_value\] \=\> https\:\/\/www.youtube.com\/watch\?v\=(.+)\n', content.text)
-    artistas = re.findall('<h3>(.+)</h3>', content.text)
-    titulos = re.findall('-->\n(.+)<\/h2>', content.text)
-    
+
     for i in range(len(enlaces)):
-        data.append(item(titulos[i].strip(), artistas[i], 'https://www.youtube.com/watch?v='+enlaces[i], muestras[i]))
+        img = enlaces[i].get_attribute('src')
+        img = img.replace('https://img.youtube.com/vi/','')
+        # print(img[:-6])
+        data.append(item(titulos[i].text, artistas[i].text, 'https://www.youtube.com/watch?v='+img[:-6], muestra[i].get_attribute("src")))
+        
 
     return data
+
 
 def myradioonline(emisora=None):
     url = 'https://myradioonline.es/los40-classic/listas'
     if emisora == 'kiss':
         url = 'https://myradioonline.es/kiss-fm/listas'
     
+    opts = Options()
+    opts.add_argument('--headless')
+    driver = Chrome(options=opts)
+    driver.get(url)
+    titulos = driver.find_elements(By.CSS_SELECTOR, 'span[itemprop=name]')[4:]
+    artista = driver.find_elements(By.CSS_SELECTOR, 'span[itemprop=byArtist]')[1:]
+    enlace = driver.find_elements(By.CSS_SELECTOR, 'div.plist-item')[1:]
     data = []
-    content = s.get(url, headers=headers)
-    titulos = content.html.find('span[itemprop=name]')[4:]
-    artista = content.html.find('span[itemprop=byArtist]')[1:]
-    enlace = content.html.find('div.plist-item')[1:]
-
     for i in range(len(titulos)):
-        # print(titulos[i].text, artista[i].text, enlace[i].attrs['data-youtube'])
-        data.append(item(titulos[i].text, artista[i].text, enlace[i].attrs['data-youtube']))
-    
+        # print(titulos[i].get_attribute('innerHTML'), artista[i].get_attribute('innerHTML'), enlace[i].get_attribute('data-youtube'))
+        data.append(item(titulos[i].get_attribute('innerHTML'), artista[i].get_attribute('innerHTML'), 'https://www.youtube.com/watch?v='+enlace[i].get_attribute('data-youtube')))
+
     return data
 
 if __name__ == "__main__":
-    p.pprint(myradioonline())
+    p.pprint(hitfm2())
