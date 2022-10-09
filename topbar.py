@@ -1,7 +1,7 @@
 mtopbar = [
     {'title':'Files','url':'./files', 'icon':'folder_open'},
     {'title':'Music','url':'./music', 'icon':'music_note'},
-    {'title':'Terminal','url':'http://dox.port0.org', 'icon':'terminal'},
+    {'title':'Terminal','url':'https://dox.port0.org', 'icon':'terminal'},
 ]
 
 def topbar():

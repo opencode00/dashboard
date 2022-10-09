@@ -17,7 +17,7 @@
 
 {% block content%}
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-3">
         <div class="card ">
             <div class="card-header">
                 Santa Cruz
@@ -43,17 +43,20 @@
             </div>
          </div>
     </div>     
-    <div class="col-sm-2">
+    <div class="col-sm-6">
         <div class="card ">
             <div class="card-header">
                 Luna 
             </div>
             <div class="card-body">
-                {{moon | safe}}    
+                <div style="text-align:center">
+                    {{moon | safe}}
+                    {{moons | safe}}
+                </div>   
             </div>
          </div>
     </div>     
-    <div class="col-sm-5">
+    <div class="col-sm-3">
         <div class="card ">
             <div class="card-header">
                 La Laguna 
@@ -80,7 +83,7 @@
         </div>
     </div>    
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
@@ -91,7 +94,7 @@
             </div>
          </div>
     </div>     
-</div>
+</div> -->
 <div class="row">
     <div class="col-sm-6">
         <div class="card ">

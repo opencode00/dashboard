@@ -86,7 +86,7 @@ def getTodayMoon():
     weekday= d.weekday()
     day = d.day
     html = f'<b>{moon["nameDay"][weekday]}, {day} de {moon["monthName"]}</b><br/>'
-    html += f'<div style="margin-top: 1em">{moon["phase"][str(day)]["svg"]}</div><br>'
+    html += f'<div style="margin-top: 1em">{moon["phase"][str(day)]["svg"]}</div>'
     html += f'<div>{moon["phase"][str(day)]["phaseName"]}' 
     if moon['phase'][str(day)]['isPhaseLimit'] is not False:
         html+=''

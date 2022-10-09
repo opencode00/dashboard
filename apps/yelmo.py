@@ -22,3 +22,8 @@ def cines():
         orotava.append(f'<a href="{i.get_attribute("href")}" target=_blank>{i.get_attribute("innerHTML")}</a>')
 
     return meridiano,orotava
+
+if __name__ == '__main__':
+    print(cines()[0])
+    print("---------------")
+    print(cines()[1])
