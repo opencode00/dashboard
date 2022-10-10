@@ -71,6 +71,7 @@ def quever():
         menu = menu.build_menu(request.path),
         series = tmdb.populars('series_p', 'tv'), 
         pelis = tmdb.populars('pelis_p', 'movies'),
+        justwatch = tmdb.justwatch(),
     )
 
 @app.get('/cupones')

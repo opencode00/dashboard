@@ -1,4 +1,16 @@
+#https://www.justwatch.com/es
+
+# https://www.themoviedb.org/?language=es (API_KEY:118d0e0aadde8ef816e4f0e8f19fc468)
+
 import requests as rq
+from requests_html import HTMLSession
+import pprint as p
+
+s = HTMLSession(verify=False)
+headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
+    'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
+    'Accept':'text/html,application/xhtml+xml,application/xml;'
+    'q=0.9,image/webp,*/*;q=0.8'}
 
 headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)''AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
@@ -25,3 +37,22 @@ def populars(type, subtype):
         items.append(formatData(i,subtype))
 
     return items
+
+def justwatch():
+    content = s.get('https://www.justwatch.com/es', headers=headers)
+    # return content.text
+    data = []
+    enlaces = content.html.find('a.title-list-grid__item--link')
+    images = content.html.find('img.picture-comp__img')
+    
+    for i in range(len(enlaces)):
+        src = images[i].attrs['src']
+        if 'data-src' in images[i].attrs:
+            src = images[i].attrs['data-src']
+        data.append(f'<a href="https://justwatch.com{enlaces[i].attrs["href"]}" target=_blank> <img src="{src}" alt="{images[i].attrs["alt"]}"></a>')
+    
+    return data
+
+if __name__ == '__main__':
+    # print(justwatch().encode('utf-8'))
+    p.pprint(justwatch())
