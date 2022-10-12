@@ -61,61 +61,17 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-3">
-        <div class="card ">
-            <div class="card-header">
-                Santa Cruz
-            </div>
-            <div class="card-body">
-                <ul>
-                    {% for ev in laagenda[0] %}
-                    <li>{{ev | safe}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+<div class="col-sm-4">
+    <div class="card ">
+        <div class="card-header">
+            La Agenda Weekend
         </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card ">
-            <div class="card-header">
-                La Laguna
-            </div>
-            <div class="card-body">
+        <div class="card-body">
+            {% for ev in laagenda %}
                 <ul>
-                    {% for ev in laagenda[1] %}
                     <li>{{ev | safe}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card ">
-            <div class="card-header">
-                Norte
-            </div>
-            <div class="card-body">
-                <ul>
-                    {% for ev in laagenda[2] %}
-                    <li>{{ev | safe}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card ">
-            <div class="card-header">
-                Sur
-            </div>
-            <div class="card-body">
-                <ul>
-                {% for ev in laagenda[3] %}
-                    <li>{{ev | safe}}</li>
-                {% endfor %}
-                </ul>
-            </div>
+                </ul>  
+            {% endfor %}
         </div>
     </div>
 </div>

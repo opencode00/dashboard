@@ -8,34 +8,17 @@ headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'Accept':'text/html,application/xhtml+xml,application/xml;'
     'q=0.9,image/webp,*/*;q=0.8'}
 
-sSC = ['Municipio de Santa Cruz','Santa Cruz','Auditorio de Tenerife Adán Martín','Biblioteca Municipal Central - TEA',
-    'Espacio Cultural CajaCanarias Santa Cruz','Espacio La Granja','Museo Municipal de Bellas Artes de Santa Cruz','Museo de la Naturaleza y Arqueología',
-    'Teatro Guimerá','TEA Tenerife Espacio de las Artes',"L'Incanto",'Asociación Cultural Equipo PARA','Café Teatro Rayuela',
-    'Conservatorio Superior de Música de Canarias','Espacio Siglo XXI','Lanave de la Tribu']
-sLL = ['La Laguna','Municipio de San Cristóbal de La Laguna','Valle Guerra','La Esperanza','Las Zocas','Aguere Espacio Cultural','Convento Santo Domingo La Laguna',
-    'Aula Magna del Aulario de Guajara','Espacio Cultural CajaCanarias La Laguna','Paraninfo','Multicines Tenerife','Museo de la Ciencia y el Cosmos',
-    'Casino de La Laguna','Casa Lercaro','Búho Club','Fundación Canaria Mapfre Guanarteme','Instituto Cabrera Pinto','La Bowie','Sala de Arte Bronzo',
-    'Sala de Arte Paraninfo Pablo González de Vera','Vórtice Café']
-sNORTE = ['Icod','El Tanque','La Matanza','La Orotava','San Juan de la Rambla','Santa Úrsula','Puerto de la Cruz','Vilaflor',
-    'Espacio Cultural CajaCanarias Garachico','Espacio Cultural El Tanque','Teatro Cine Municipal Icod','Teatro El Sauzal','Recinto Festero']
-sSUR = ['Tabaiba','Ecléctico Café','Güímar','Chío','San Miguel de Abona','Valle San Lorenzo','Guaza','Playa de Las Américas','Costa Adeje','Municipio de Guía de Isora',
-    'Adeje Casco','Centro Cultural Los Cristianos','Auditorio Infanta Leonor','Casa de la Juventud de Adeje','La Casa Fuerte','Light Park Tenerife']
-
-SC= []
-LL = []
-NORTE = []
-SUR = []
-
 def laagenda():
     url = 'https://lagenda.org/programacion/planfinde'
     titulos = []
     lugares = []
+    data = []
+    fdata = []
+    sitios = []
     content = s.get(url, headers=headers)
     titulos = content.html.find('h4.title a')
     lugares = content.html.find('div.meta div:nth-child(3) a')
     fechas = content.html.find('div.post-date[itemprop=datePublished]') #178
-
-
 
     for i in range(len(titulos)-1):
         ev = dict()
@@ -43,30 +26,24 @@ def laagenda():
         ev['enlace'] = 'https://lagenda.org'+titulos[i].attrs["href"]
         ev['titulo'] = titulos[i].text
         ev['fecha'] = fechas[i].text
-
-        if ev['lugar'] in sSC:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]} - {ev["titulo"]}</a>'
-            SC.append(html)
-        if ev['lugar'] in sLL:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
-            LL.append(html)
-        if ev['lugar'] in sNORTE:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
-            NORTE.append(html)
-        if ev['lugar'] in sSUR:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
-            SUR.append(html)
-        
-    return SC,LL,NORTE,SUR
+        sitios.append(lugares[i].text)
+        data.append(ev)
     
-def santa():
-    url = 'https://www.elcorazondetenerife.com/agenda/'
-    content = s.get(url, headers=headers)
-    titulos = content.html.find('span[itemprop=name]')
-    # lugares = content.html.find('div.meta div:nth-child(3) a')
-    # fechas = content.html.find('div.post-date[itemprop=datePublished]') #178
-    return titulos
+    data.sort(key=lambda x: x['lugar'])
+    sitios = list(set(sitios))
+    sitios.sort()
 
+    for i in sitios:
+        print(i)
+    #     lk = ''
+    #     for j in range(len(titulos)-1):
+    #         if (i == data[j]['lugar']):
+    #             lk += f'<li><a href="{data[j]["enlace"]}" target=_blank>{data[j]["fecha"]}{data[j]["titulo"]}</a></li>'
+        
+    #     fdata.append(f'<h4>{i}</h4><ul>{lk}</ul>')
+        
+    # # pprint.pprint(fdata)
+    # return fdata
 
 def cabtfe(url):
     content = s.get(url, headers=headers)
@@ -120,4 +97,4 @@ def rcnt():
     return data
 
 if __name__ == '__main__':
-    pprint.pprint(santa())
+    pprint.pprint(laagenda())
