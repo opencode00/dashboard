@@ -62,10 +62,10 @@ def laagenda():
 def santa():
     url = 'https://www.elcorazondetenerife.com/agenda/'
     content = s.get(url, headers=headers)
-    titulos = content.html.find('span[itemprop=name]')
+    # titulos = content.html.find('span[itemprop=name]')
     # lugares = content.html.find('div.meta div:nth-child(3) a')
     # fechas = content.html.find('div.post-date[itemprop=datePublished]') #178
-    return titulos
+    return content.text
 
 
 def cabtfe(url):
