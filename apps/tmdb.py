@@ -7,17 +7,19 @@ from requests_html import HTMLSession
 import pprint as p
 
 s = HTMLSession(verify=False)
-headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
-    'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
-    'Accept':'text/html,application/xhtml+xml,application/xml;'
-    'q=0.9,image/webp,*/*;q=0.8'}
+headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMThkMGUwYWFkZGU4ZWY4MTZlNGYwZThmMTlmYzQ2OCIsInN1YiI6IjU4OTIxNGUzOTI1MTQxMmRkNzAwOTY5YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fm7GExZr-T2lf-LKRlO2hwSChnANjLjnDpTsgqykgTM',
+    # 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMThkMGUwYWFkZGU4ZWY4MTZlNGYwZThmMTlmYzQ2OCIsInN1YiI6IjU4OTIxNGUzOTI1MTQxMmRkNzAwOTY5YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fm7GExZr-T2lf-LKRlO2hwSChnANjLjnDpTsgqykgTM',
+    #'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    }
 
 headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)''AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
 
 def req(type):
     api_key = '118d0e0aadde8ef816e4f0e8f19fc468'
-    cmds = {'series_p': 'tv/popular', 'pelis_p': 'movie/popular' }
+    cmds = {'series_p': 'trending/tv/day', 'pelis_p': 'trending/movie/day' }
     opts = 'language=es-ES'
     # print(f'https://api.themoviedb.org/3/{cmds[type]}?api_key={api_key}&{opts}')
     return f'https://api.themoviedb.org/3/{cmds[type]}?api_key={api_key}&{opts}'
