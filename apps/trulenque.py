@@ -48,13 +48,13 @@ def laagenda():
             html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]} - {ev["titulo"]}</a>'
             SC.append(html)
         if ev['lugar'] in sLL:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
+            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]} - {ev["titulo"]}</a>'
             LL.append(html)
         if ev['lugar'] in sNORTE:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
+            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]} - {ev["titulo"]}</a>'
             NORTE.append(html)
         if ev['lugar'] in sSUR:
-            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]}{ev["titulo"]}</a>'
+            html = f'<a href="{ev["enlace"]}" target=_blank>{ev["fecha"]} - {ev["titulo"]}</a>'
             SUR.append(html)
         
     return SC,LL,NORTE,SUR
