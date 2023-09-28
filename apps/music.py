@@ -37,7 +37,7 @@ def los40():
     lista40 = content.html.find('iframe')[4:]
     
     for i in lista40:
-        lista.append(item(i.attrs["title"], "", i.attrs["data-url_youtube"], i.attrs["src"]))
+        lista.append(item(i.attrs["title"], "", i.attrs["src"]))
     
     return lista
 
@@ -73,4 +73,5 @@ def myradioonline(emisora=None):
     return data
 
 if __name__ == "__main__":
-    p.pprint(myradioonline())
+    p.pprint(los40())
+    # p.pprint(myradioonline())
