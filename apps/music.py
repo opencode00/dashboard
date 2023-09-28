@@ -34,10 +34,10 @@ def los40():
     url = 'https://los40.com/lista40/'
     lista = []
     content = s.get(url, headers=headers)
-    lista40 = content.html.find('div[data-url_youtube]')
+    lista40 = content.html.find('iframe')[4:]
     
     for i in lista40:
-        lista.append(item(i.attrs["data-titulo_cancion"], i.attrs["data-nombre_artista"], i.attrs["data-url_youtube"], i.attrs["data-url_media"]))
+        lista.append(item(i.attrs["title"], "", i.attrs["data-url_youtube"], i.attrs["src"]))
     
     return lista
 
@@ -68,7 +68,7 @@ def myradioonline(emisora=None):
 
     for i in range(len(titulos)):
         # print(titulos[i].text, artista[i].text, enlace[i].attrs['data-youtube'])
-        data.append(item(titulos[i].text, artista[i].text, enlace[i].attrs['data-youtube']))
+        data.append(item(titulos[i].text, artista[i].text, 'https://www.youtube.com/watch?v='+enlace[i].attrs['data-youtube']))
     
     return data
 
