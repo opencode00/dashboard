@@ -1,6 +1,7 @@
 mtopbar = [
     {'title':'Files','url':'./files', 'icon':'folder_open'},
     {'title':'Music','url':'http://flix.port0.org', 'icon':'music_note'},
+    {'title':'Music','url':'http://opencode.port0.org/music', 'icon':'play_arrow'},
     {'title':'Terminal','url':'https://dox.port0.org', 'icon':'terminal'},
 ]
 

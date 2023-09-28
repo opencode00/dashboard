@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../static/img/favicon.png">
+  <title>
+    OpenCode - {%block title%}Dashboard{%endblock%}
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,200" />
+  <link href="../static/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  {%block css%}{%endblock%}
+  <style>
+    .text2middle{
+      vertical-align: middle;
+    }
+
+  </style>
+</head>
+
+<body class="">
+  <div class="wrapper">
+    <div class="sidebar" data="magenta">
+      <div class="sidebar-wrapper" >
+        <div class="logo">
+          <a target=_blank href="./">
+              <span style="font-size:45px" class="material-symbols-rounded text2middle">home</span>
+              <span class="d-lg-none d-md-block">Inicio</span>
+          </a>
+        </div>
+        <ul class="nav">
+          {%for item in menu%}
+          {{ item | safe}}
+          {%endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="javascript:void(0)">Titulo Pagina</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+              {%for item in bTopbar%}
+                {{ item | safe}}
+              {%endfor %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+          {%block content%} {%endblock%}
+      </div>
+      <footer class="footer">
+        
+      </footer>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../static/js/core/jquery.min.js"></script>
+  <script src="../static/js/core/popper.min.js"></script>
+  <script src="../static/js/core/bootstrap.min.js"></script>
+  <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Chart JS -->
+  <!-- <script src="../static/js/plugins/chartjs.min.js"></script> -->
+  <!--  Notifications Plugin    -->
+  <!-- <script src="../static/js/plugins/bootstrap-notify.js"></script> -->
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/black-dashboard.js?v=1.0.0"></script>
+  <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+      });
+    });
+  </script>
+</body>
+</html>
