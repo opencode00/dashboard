@@ -25,6 +25,7 @@ headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
     'q=0.9,image/webp,*/*;q=0.8'}
 
 def item(titulo, artista, enlaceyt, enlace=None):
+    print(titulo, artista, enlaceyt, enlace)
     if enlace is not None:
         return f'<b>{titulo}</b> <br> {artista} <br> <a href="{enlaceyt}" target=_blank> YT </a> <a href="{enlace}" target=_blank> Muestra </a>'
     
@@ -34,28 +35,25 @@ def los40():
     url = 'https://los40.com/lista40/'
     lista = []
     content = s.get(url, headers=headers)
-    # return content.html.absolute_links
-    # exit()
     items = content.html.find('ul.lst-can li')
 
-    for item in items:
-        if 'id' in item.attrs:
-            artist = item.find('div.c-ele div p span', first=True).text
-            title = item.find('div.c-ele div p', first=True).text.replace(artist, "")
-            audios= item.find('ul.l-esc li a')
+    for li_item in items:
+        if 'id' in li_item.attrs:
+            artist = li_item.find('div.c-ele div p span', first=True).text
+            title = li_item.find('div.c-ele div p', first=True).text.replace(artist, "")
+            audios= li_item.find('ul.l-esc li a')
             for audio in audios:
                 preview = ''
                 if 'href' in audio.attrs:
                     if 'https://music.apple.con' not in audio.attrs['href']:
                         preview = audio.attrs['href'] 
-            yts = item.find('iframe', first=True)
+            yts = li_item.find('iframe', first=True)
             yt = ''
             if yts is not None:
                 yt = 'https://www.youtube.com/watch?v='+yts.attrs['src'].replace('https://www.youtube.com/embed/', "")
-            print(f'{title} - {artist} - {preview} - {yt}')
-            # lista.append(item(i.attrs["title"], "", i.attrs["src"]))
-            
-    # return lista
+            # print(f'{title} - {artist} - {preview} - {yt}')
+            lista.append(item(title,artist,yt,preview))
+    return lista
 
 def hitfm2():
     url = 'https://www.hitfm.es/hit-30/'
@@ -88,6 +86,6 @@ def myradioonline(emisora=None):
     
     return data
 
-if __name__ == "__main__":
-    p.pprint(los40())
+# if __name__ == "__main__":
+    # p.pprint(los40())
     # p.pprint(myradioonline())
