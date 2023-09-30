@@ -34,12 +34,28 @@ def los40():
     url = 'https://los40.com/lista40/'
     lista = []
     content = s.get(url, headers=headers)
-    lista40 = content.html.find('iframe')[4:]
-    
-    for i in lista40:
-        lista.append(item(i.attrs["title"], "", i.attrs["src"]))
-    
-    return lista
+    # return content.html.absolute_links
+    # exit()
+    items = content.html.find('ul.lst-can li')
+
+    for item in items:
+        if 'id' in item.attrs:
+            artist = item.find('div.c-ele div p span', first=True).text
+            title = item.find('div.c-ele div p', first=True).text.replace(artist, "")
+            audios= item.find('ul.l-esc li a')
+            for audio in audios:
+                preview = ''
+                if 'href' in audio.attrs:
+                    if 'https://music.apple.con' not in audio.attrs['href']:
+                        preview = audio.attrs['href'] 
+            yts = item.find('iframe', first=True)
+            yt = ''
+            if yts is not None:
+                yt = 'https://www.youtube.com/watch?v='+yts.attrs['src'].replace('https://www.youtube.com/embed/', "")
+            print(f'{title} - {artist} - {preview} - {yt}')
+            # lista.append(item(i.attrs["title"], "", i.attrs["src"]))
+            
+    # return lista
 
 def hitfm2():
     url = 'https://www.hitfm.es/hit-30/'
