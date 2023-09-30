@@ -43,7 +43,7 @@ def los40():
             title = li_item.find('div.c-ele div p', first=True).text.replace(artist, "")
             audios= li_item.find('ul.l-esc li a')
             for audio in audios:
-                preview = ''
+                preview = None
                 if 'href' in audio.attrs:
                     if 'https://music.apple.con' not in audio.attrs['href']:
                         preview = audio.attrs['href'] 
