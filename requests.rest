@@ -1,0 +1,27 @@
+
+###ping
+GET http://localhost:5722/rest/ping.view?u=OpenCode&p=1234&v=1.12.0&c=myapp
+
+###Music Directory
+GET http://localhost:5722/rest/getMusicDirectory?u=OpenCode&p=1234&v=1.12.0&c=myapp
+
+### Canciones
+GET http://localhost:5722/rest/getIndexes?u=OpenCode&p=1234&v=1.12.0&c=myapp
+
+### Artistas
+GET http://localhost:5722/rest/getGenres?u=OpenCode&p=1234&v=1.14.0&c=myapp
+
+### Generos
+GET http://localhost:5722/rest/getGenres?u=OpenCode&p=1234&v=1.14.0&c=myapp
+
+### Canciones de un genero
+GET http://localhost:5722/rest/getSongsByGenre?u=OpenCode&p=1234&v=1.12.0&c=myapp&genre=PositiveVibes
+
+###Listas
+GET http://localhost:5722/rest/getPlaylists?u=OpenCode&p=1234&v=1.12.0&c=myapp
+
+###Canciones de lista
+GET http://localhost:5722/rest/getPlaylist?u=OpenCode&p=1234&v=1.12.0&c=myapp&id=1
+
+###Buscar por cancion, artista, album
+GET http://localhost:5722/rest/search3?u=OpenCode&p=1234&v=1.12.0&c=myapp&query=ACDC
